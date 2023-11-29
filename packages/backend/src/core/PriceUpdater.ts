@@ -75,6 +75,7 @@ export class PriceUpdater {
 
     const boundaries = await this.priceRepository.findDataBoundaries()
 
+    this.logger.info('Token list size', { size : this.tokens.length})
     const results = await Promise.allSettled(
       this.tokens.map(({ id: assetId, address, sinceTimestamp }) => {
         const boundary = boundaries.get(assetId)
